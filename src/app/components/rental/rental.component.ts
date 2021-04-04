@@ -11,6 +11,7 @@ export class RentalComponent implements OnInit {
 
   rentals:Rental[]=[];
   dataLoaded=false;
+  filterText="";
   constructor(private rentalService:RentalService) { }
 
   ngOnInit(): void {

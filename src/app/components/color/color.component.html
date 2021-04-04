@@ -1,8 +1,9 @@
-<h6>Colors</h6>
-<ul class="list-group">
-    <li (click)="setCurrentColor(color)" 
-    routerLink="/cars/color/{{color.colorId}}"
-    *ngFor="let color of colors" 
-    [class]="getCurrentColor(color)">{{color.colorName}}</li>
-</ul>
+<span class="d-block p-2 bg-secondary text-white">Colors</span>
+<select [(ngModel)]="currentColor" class="form-select" aria-label="Colors">
+    <option [ngValue]="allColor" [selected]="allColorSelected()">All Colors</option>
+    <option *ngFor="let color of colors" [ngValue]="color.colorId" >{{color.colorName}}</option>
+  </select>
+
+  <button routerLink="/cars/color/{{currentColor}}" type="button" class="btn btn-primary">Filter by color</button>
+
   
