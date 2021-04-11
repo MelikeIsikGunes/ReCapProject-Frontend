@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CarDto } from 'src/app/models/carDto';
 import { CarImage } from 'src/app/models/carImage';
@@ -15,6 +16,9 @@ import { RentalService } from 'src/app/services/rental.service';
 })
 export class CarDetailComponent implements OnInit {
 
+  rentalCarForm : FormGroup;
+  customers:Customer[]=[];
+  
   carImages:CarImage[]=[];
   carDto:CarDto[]=[];
 
@@ -22,11 +26,13 @@ export class CarDetailComponent implements OnInit {
   carImageUrl:string='';
   carImageUrlDefault: string = this.carImageService.apiImagesURL;
 
- 
+  rentDate!: Date;
+  returnDate!: Date;
 
   constructor(private carImageService:CarImageService,
     private carService:CarService,
-    private activatedRoute:ActivatedRoute) { }
+    private activatedRoute:ActivatedRoute,
+    private customerService:CustomerService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((parameter) => {
